@@ -1,15 +1,16 @@
 <template>
-    <div>
-
-    </div>
+  <Layout />
 </template>
 
 <script>
-    export default {
-        name: "App"
-    }
+import Layout from "./Layout.vue";
+export default {
+  name: "App",
+  components: {
+    Layout,
+  },
+};
 </script>
 
 <style scoped>
-
 </style>
