@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
     textarea:focus,
     input:focus {
@@ -14,23 +15,59 @@
     }
     .topbar {
         @apply h-12 shadow-md;
+        .app-title {
+            @apply text-center text-3xl text-white leading-normal font-semibold uppercase;
+        }
     }
+
+    .content-wrapper {
+        @apply flex flex-col h-[calc(100%-3rem)] w-full py-3;
+    }
+
+    .form-wrapper {
+        @apply md:h-full w-full;
+    }
+
+    .form-description{
+        @apply relative h-1/2 md:h-1/2 rounded-b-md bg-white;
+    }
+    
+    .main-form {
+        @apply p-4 md:h-full w-[640px] mx-auto;
+        .note-title {
+            @apply w-full px-3 py-2 rounded-t-md text-base;
+        }
+    
+        .note-desc {
+            @apply w-full py-2 px-3 resize-none h-36 text-base text-slate-600 ;
+        }
+    
+        .add-btn {
+            @apply absolute bg-gradient-to-tl from-purple-500 to-sky-500 hover:from-purple-400 hover:to-sky-600 hover:text-slate-50 text-white px-4 py-2 rounded-full right-4 bottom-4 hover:shadow-md font-semibold;
+        }
+    }
+    
+
     .color-palettes {
         @apply absolute h-5 bottom-5 left-4;
-        span:not(:last-child) {
-            @apply h-5 w-5 ml-2 rounded-sm inline-block border-2;
+        span {
+            @apply h-5 w-5 rounded-sm inline-block border-2;
+            &:not(:last-child) {
+                @apply mr-2;
+            }
         }
     }
     .notes {
-        @apply p-4 grid gap-5;
-        @screen sm {
-            @apply grid-cols-2;
-        }
-        @screen lg {
-            @apply grid-cols-3;
-        }
-        @screen xl {
-            @apply grid-cols-4;
+        @apply p-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 overflow-x-hidden overflow-y-auto;
+        .note {
+            .close-btn {
+                @apply absolute right-2 top-0 inline-block opacity-0;
+            }
+            &:hover {
+                & .close-btn {
+                    @apply text-red-500 opacity-100 hover:cursor-pointer text-xl;
+                }
+            }
         }
     }
 }

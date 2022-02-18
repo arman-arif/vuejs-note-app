@@ -1,72 +1,65 @@
-<script>
-</script>
-
-<style lang="scss" module="tailwind">
-</style>
-
 <template>
   <div class="wrapper">
     <div class="topbar">
-      <h1
-        class="
-          text-center text-3xl text-white
-          leading-normal
-          font-semibold
-          uppercase
-        "
-      >
-        Notes
-      </h1>
+      <h1 class="app-title">Notes</h1>
     </div>
-    <div class="flex flex-col md:flex-row h-[calc(100%-3rem)] w-full py-3">
-      <div class="w-full md:w-1/3 md:h-full md:container">
-        <form class="p-4 md:h-full" action="" @submit.prevent="false">
-          <input
-            type="text"
-            class="w-full px-3 py-2 rounded-t-md text-base"
-            placeholder="Enter Title"
-          />
-          <div class="relative h-1/2 md:h-1/2 rounded-b-md bg-white">
-            <textarea
-              class="w-full py-2 px-3 resize-none h-5/6 text-base text-slate-600"
-              placeholder="Note Description"
-            ></textarea>
+    <div class="content-wrapper">
+      <div class="form-wrapper">
+        <form class="main-form" action @submit.prevent="false">
+          <input type="text" class="note-title" placeholder="Enter Title" />
+          <div class="form-description">
+            <textarea class="note-desc" placeholder="Note Description"></textarea>
             <div class="color-palettes">
-              <span class="bg-red-500 border-red-500"></span>
-              <span class="bg-green-500 border-green-500"></span>
-              <span class="bg-blue-500 border-blue-500"></span>
-              <span class="bg-yellow-500 border-yellow-500"></span>
-              <span class="bg-orange-500 border-orange-500"></span>
-              <span class="bg-slate-300 border-slate-300"></span>
+              <span class="bg-red-200 border-red-200"></span>
+              <span class="bg-green-200 border-green-200"></span>
+              <span class="bg-blue-200 border-blue-200"></span>
+              <span class="bg-yellow-200 border-yellow-200"></span>
+              <span class="bg-orange-200 border-orange-200"></span>
+              <span class="bg-slate-200 border-slate-200"></span>
             </div>
-            <button
-              type="submit"
-              class="
-                absolute
-                bg-gradient-to-tl
-                from-purple-500
-                to-sky-500
-                hover:from-purple-400 hover:to-sky-600 hover:text-slate-50
-                text-white
-                px-4
-                py-2
-                rounded-full
-                right-4
-                bottom-4
-              "
-            >
-              Add Note
-            </button>
+            <button type="submit" class="add-btn">Add Note</button>
           </div>
         </form>
       </div>
-      <div class="w-full md:w-2/3 h-full">
-        <div class="notes">
-          <div class="note h-36 bg-slate-50 rounded shadow"></div>
-          <div class="note h-36 bg-slate-50 rounded shadow"></div>
-          <div class="note h-36 bg-slate-50 rounded shadow"></div>
+      <div class="w-full md:h-full h-[calc(100%-200px)]">
+        <div class="notes h-full w-1/2 mx-auto">
+          <div
+            class="note h-36 rounded shadow-lg relative hover:shadow-2xl p-3"
+            v-for="color in colors"
+            :class="color"
+          >
+            <button class="close-btn">&times;</button>
+            <div class="content">
+              <div class="time text-gray-500 text-sm leading-none">A minutes ago.</div>
+              <h2 class="title text-md font-semibold leading-loose">The Note Title</h2>
+              <p
+                class="desc leading-tight text-base text-slate-600"
+              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident, quos?</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "Layout",
+  data() {
+    return {
+      colors: [
+        "bg-slate-200",
+        "bg-orange-200",
+        "bg-green-200",
+        "bg-red-200",
+        "bg-yellow-200",
+        "bg-blue-200",
+        "bg-purple-200",
+      ],
+    };
+  },
+};
+</script>
+
+<style lang="scss" module="tailwind"></style>
