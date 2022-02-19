@@ -25,7 +25,7 @@
     }
 
     .form-wrapper {
-        @apply md:h-full w-full;
+        @apply w-full;
     }
 
     .form-description{
@@ -33,7 +33,7 @@
     }
     
     .main-form {
-        @apply p-4 md:h-full w-[640px] mx-auto;
+        @apply p-4 max-w-[640px] mx-auto;
         .note-title {
             @apply w-full px-3 py-2 rounded-t-md text-base;
         }
@@ -44,6 +44,16 @@
     
         .add-btn {
             @apply absolute bg-gradient-to-tl from-purple-500 to-sky-500 hover:from-purple-400 hover:to-sky-600 hover:text-slate-50 text-white px-4 py-2 rounded-full right-4 bottom-4 hover:shadow-md font-semibold;
+        }
+    }
+
+    .filter-bar {
+        @apply w-full mt-2 mb-4 p-4 max-w-screen-sm mx-auto;
+        .filter-colors {
+            @apply w-full bg-white h-12 shadow-md rounded-md grid grid-flow-col place-items-stretch leading-[48px] overflow-hidden text-center font-semibold;
+            span {
+                @apply hover:cursor-pointer hover:shadow-inner;
+            }
         }
     }
     
@@ -58,14 +68,14 @@
         }
     }
     .notes {
-        @apply p-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 overflow-x-hidden overflow-y-auto;
+        @apply p-4 pt-0 grid gap-6 xs:grid-cols-2;
         .note {
             .close-btn {
                 @apply absolute right-2 top-0 inline-block opacity-0;
             }
             &:hover {
-                & .close-btn {
-                    @apply text-red-500 opacity-100 hover:cursor-pointer text-xl;
+                .close-btn {
+                    @apply text-red-400 hover:text-red-600 opacity-100 hover:cursor-pointer text-xl;
                 }
             }
         }

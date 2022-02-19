@@ -2,13 +2,15 @@
 require("@rushstack/eslint-patch/modern-module-resolution");
 
 module.exports = {
-    "root": true,
-    "extends": [
+    root: true,
+    extends: [
         "plugin:vue/vue3-essential",
         "eslint:recommended",
-        "@vue/eslint-config-prettier"
+        "@vue/eslint-config-prettier",
     ],
-    "env": {
+    env: {
         "vue/setup-compiler-macros": true,
+        "vue/multiword-property-casing": true,
+        "vue/mulit-word-property-name": false
     }
-}
+};
