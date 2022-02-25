@@ -33,7 +33,7 @@
     }
     
     .main-form {
-        @apply p-4 max-w-[640px] mx-auto;
+        @apply px-4 pt-3 pb-2 max-w-[640px] mx-auto;
         .note-title {
             @apply w-full px-3 py-2 rounded-t-md text-base;
         }
@@ -48,7 +48,7 @@
     }
 
     .filter-bar {
-        @apply w-full mt-2 mb-4 p-4 max-w-screen-sm mx-auto;
+        @apply w-full mt-2 mb-3 p-4 max-w-screen-sm mx-auto;
         .filter-colors {
             @apply w-full bg-white h-12 shadow-md rounded-md grid grid-flow-col place-items-stretch leading-[48px] overflow-hidden text-center font-semibold;
             span {

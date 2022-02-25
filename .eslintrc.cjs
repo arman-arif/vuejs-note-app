@@ -12,5 +12,9 @@ module.exports = {
         "vue/setup-compiler-macros": true,
         "vue/multiword-property-casing": true,
         "vue/mulit-word-property-name": false
+    },
+    rules: {
+        // override/add rules settings here, such as:
+        'vue/no-unused-vars': 'error'
     }
 };
