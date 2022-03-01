@@ -37,16 +37,16 @@ export default {
           title: "The note title",
           note: "Erat autem lorem nonummy duo stet luptatum dolor labore. Ipsum dolor nonu",
           color: "#FECACA",
-          time: "A few minutes ago"
+          time: "A few minutes ago",
         },
         {
           id: 1,
           title: "The note title",
           note: "Erat autem lorem nonummy duo stet luptatum dolor labore. Ipsum dolor nonu",
           color: "#FECACA",
-          time: "A few minutes ago"
+          time: "A few minutes ago",
         },
-      ]
+      ],
     };
   },
 };
