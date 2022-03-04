@@ -3,81 +3,95 @@
 @tailwind utilities;
 
 @layer base {
-    textarea:focus,
-    input:focus {
-        outline: none;
-    }
+  textarea:focus,
+  input:focus {
+    outline: none;
+  }
 }
 
 @layer components {
-    .wrapper {
-        @apply h-screen w-screen bg-gradient-to-br from-blue-300 to-indigo-500;
+  .wrapper {
+    @apply h-screen w-screen bg-gradient-to-br from-blue-300 to-indigo-500;
+  }
+  .topbar {
+    @apply h-12 shadow-md;
+    .app-title {
+      @apply text-center text-3xl text-white leading-normal font-semibold uppercase;
     }
-    .topbar {
-        @apply h-12 shadow-md;
-        .app-title {
-            @apply text-center text-3xl text-white leading-normal font-semibold uppercase;
-        }
+  }
+
+  .content-wrapper {
+    @apply flex flex-col h-[calc(100%-3rem)] w-full py-3;
+  }
+
+  .form-wrapper {
+    @apply w-full;
+  }
+
+  .form-description {
+    @apply relative h-1/2 md:h-1/2 rounded-b-md bg-white;
+
+    .add-btn {
+      @apply absolute bg-gradient-to-tl from-purple-500 to-sky-500 hover:from-purple-400 hover:to-sky-600 hover:text-slate-50 text-white px-4 py-2 rounded-full right-4 bottom-4 hover:shadow-md font-semibold;
+    }
+  }
+
+  .main-form {
+    @apply px-4 pt-3 pb-2 max-w-[640px] mx-auto;
+    .note-title {
+      @apply w-full px-3 py-2 rounded-t-md text-base;
     }
 
-    .content-wrapper {
-        @apply flex flex-col h-[calc(100%-3rem)] w-full py-3;
+    .note-desc {
+      @apply w-full py-2 px-3 resize-none h-36 text-base text-slate-600;
     }
+  }
 
-    .form-wrapper {
-        @apply w-full;
+  .filter-bar {
+    @apply w-full mt-2 mb-3 p-4 max-w-screen-sm mx-auto;
+    .filter-colors {
+      @apply w-full bg-white h-12 shadow-md rounded-md grid grid-flow-col place-items-stretch leading-[48px] overflow-hidden text-center font-semibold;
+      span {
+        @apply hover:cursor-pointer hover:shadow-inner;
+      }
     }
+  }
 
-    .form-description{
-        @apply relative h-1/2 md:h-1/2 rounded-b-md bg-white;
+  .color-palettes {
+    @apply absolute h-5 bottom-5 left-4;
+    span {
+      @apply h-5 w-5 rounded-sm inline-block border-2;
+      &:not(:last-child) {
+        @apply mr-2;
+      }
     }
-    
-    .main-form {
-        @apply px-4 pt-3 pb-2 max-w-[640px] mx-auto;
-        .note-title {
-            @apply w-full px-3 py-2 rounded-t-md text-base;
-        }
-    
-        .note-desc {
-            @apply w-full py-2 px-3 resize-none h-36 text-base text-slate-600 ;
-        }
-    
-        .add-btn {
-            @apply absolute bg-gradient-to-tl from-purple-500 to-sky-500 hover:from-purple-400 hover:to-sky-600 hover:text-slate-50 text-white px-4 py-2 rounded-full right-4 bottom-4 hover:shadow-md font-semibold;
-        }
-    }
+  }
 
-    .filter-bar {
-        @apply w-full mt-2 mb-3 p-4 max-w-screen-sm mx-auto;
-        .filter-colors {
-            @apply w-full bg-white h-12 shadow-md rounded-md grid grid-flow-col place-items-stretch leading-[48px] overflow-hidden text-center font-semibold;
-            span {
-                @apply hover:cursor-pointer hover:shadow-inner;
-            }
-        }
-    }
-    
+  .notes-wrapper {
+    @apply w-full md:h-full h-[calc(100%-200px)] overflow-x-hidden overflow-y-auto scroll-smooth scrollbar-thin hover:scrollbar-track-indigo-400 hover:scrollbar-thumb-indigo-600;
+  }
 
-    .color-palettes {
-        @apply absolute h-5 bottom-5 left-4;
-        span {
-            @apply h-5 w-5 rounded-sm inline-block border-2;
-            &:not(:last-child) {
-                @apply mr-2;
-            }
+  .notes {
+    @apply p-4 pt-0 grid gap-6 xs:grid-cols-2 h-full max-w-[640px] mx-auto rounded;
+    .note {
+      @apply h-36 rounded shadow-lg relative hover:shadow-2xl p-3;
+      .desc {
+        @apply leading-tight text-base text-slate-600;
+      }
+      .title {
+        @apply font-semibold leading-loose; // text-lg;
+      }
+      .time {
+        @apply text-gray-500 text-sm leading-none;
+      }
+      .close-btn {
+        @apply absolute right-2 top-0 inline-block opacity-0;
+      }
+      &:hover {
+        .close-btn {
+          @apply text-red-400 hover:text-red-600 opacity-100 hover:cursor-pointer text-xl;
         }
+      }
     }
-    .notes {
-        @apply p-4 pt-0 grid gap-6 xs:grid-cols-2;
-        .note {
-            .close-btn {
-                @apply absolute right-2 top-0 inline-block opacity-0;
-            }
-            &:hover {
-                .close-btn {
-                    @apply text-red-400 hover:text-red-600 opacity-100 hover:cursor-pointer text-xl;
-                }
-            }
-        }
-    }
+  }
 }

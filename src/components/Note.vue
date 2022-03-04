@@ -1,25 +1,28 @@
 <template>
-  <div
-    class="note h-36 rounded shadow-lg relative hover:shadow-2xl p-3"
-    :style="{ backgroundColor: note.color }"
-  >
-    <button class="close-btn">&times;</button>
+  <div class="note" :style="{ backgroundColor: note.color }">
+    <button class="close-btn" @click="$emit('remove', note.id)">&times;</button>
     <div class="content">
-      <div class="time text-gray-500 text-sm leading-none">{{ note.time }}</div>
-      <h2 class="title text-md font-semibold leading-loose">{{ note.title }}</h2>
-      <p class="desc leading-tight text-base text-slate-600">
-          {{ note.note }}
-      </p>
+      <div class="time">{{ formatedTime }}</div>
+      <h2 class="title">{{ note.title }}</h2>
+      <p class="desc">{{ note.desc }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 export default {
   name: "Note",
   props: {
     note: Object,
     bgColor: String,
+  },
+  computed: {
+    formatedTime() {
+      return dayjs(this.note.time).fromNow();
+    },
   },
 };
 </script>
