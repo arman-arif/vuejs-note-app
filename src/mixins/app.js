@@ -1,6 +1,18 @@
-import { v4 as uuid } from "uuid";
 import { mapState, mapGetters, mapMutations } from "vuex";
+import { v4 as uuid } from "uuid";
+import Master from "@/layouts/Master.vue";
+import FilterBar from "@/components/FilterBar.vue";
+import Notes from "@/components/Notes.vue";
+import Note from "@/components/Note.vue";
+import Form from "@/components/Form.vue";
 export default {
+  components: {
+    Master,
+    Notes,
+    FilterBar,
+    Note,
+    Form,
+  },
   mounted() {
     const notes = JSON.parse(localStorage.getItem("notes")) || [
       {
