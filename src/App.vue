@@ -30,17 +30,28 @@ export default {
         desc: "",
         color: "#FCFAF9",
       },
-      notes: [
-        {
-          id: 1,
-          title: "The note title",
-          desc: "Erat autem lorem nonummy duo stet luptatum dolor labore",
-          color: "#E9D5FF",
-          time: "2022-01-01T00:00:00.000Z",
-        },
-      ],
+      notes: [],
       filter: "all",
     };
+  },
+  mounted() {
+    this.notes = JSON.parse(localStorage.getItem("notes")) || [
+      {
+        id: 1,
+        title: "The note title",
+        desc: "Erat autem lorem nonummy duo stet luptatum dolor labore",
+        color: "#E9D5FF",
+        time: "2022-01-01T00:00:00.000Z",
+      },
+    ];
+  },
+  watch: {
+    notes: {
+      handler() {
+        localStorage.setItem("notes", JSON.stringify(this.notes));
+      },
+      deep: true,
+    },
   },
   computed: {
     filteredNotes() {
