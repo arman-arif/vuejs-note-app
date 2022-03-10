@@ -5,7 +5,7 @@
         v-for="note in notes"
         :key="note.id"
         :note="note"
-        @remove="$emit('delete', note.id)"
+        @remove="deleteNote(note.id)"
       />
     </div>
   </div>
@@ -13,15 +13,19 @@
 
 <script>
 import Note from "./Note.vue";
+import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "Notes",
   components: {
     Note,
   },
-  props: {
-    notes: {
-      type: Array,
-    },
+  computed: {
+    ...mapGetters({
+      notes: "filteredNotes",
+    }),
   },
+  methods: mapMutations({
+    deleteNote: "deleteNote",
+  }),
 };
 </script>

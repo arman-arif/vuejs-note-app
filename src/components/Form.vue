@@ -1,6 +1,6 @@
 <template>
   <div class="form-wrapper">
-    <form class="main-form" @submit.prevent="handleAddNote">
+    <form class="main-form" @submit.prevent="addNote">
       <input
         type="text"
         class="note-title border-b"
@@ -15,7 +15,7 @@
         >
         </textarea>
 
-        <ColorPalette @select-color="handleSelectColor" v-model="note.color" />
+        <ColorPalette v-model="note.color" />
 
         <button type="submit" class="add-btn">Add Note</button>
       </div>
@@ -24,44 +24,15 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 import ColorPalette from "./ColorPalette.vue";
 export default {
   name: "Form",
   components: {
     ColorPalette,
   },
-  data() {
-    return {
-      note: {
-        title: "",
-        desc: "",
-        color: "#FCFAF9",
-      },
-    };
-  },
-  props: {},
-  methods: {
-    handleSelectColor(color) {
-      this.note.color = color;
-    },
-
-    handleAddNote() {
-      if (this.note.title == "") {
-        alert("Please enter a title");
-        return;
-      }
-      if (this.note.desc == "") {
-        alert("Please enter a description");
-        return;
-      }
-      this.$emit("add-note", this.note);
-      this.note = {
-        title: "",
-        desc: "",
-        color: this.note.color,
-      };
-    },
-  },
+  computed: mapState(["note"]),
+  methods: mapActions(["addNote"]),
 };
 </script>
 

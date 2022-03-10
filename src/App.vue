@@ -1,8 +1,9 @@
 <template>
-  <Master :pageTitle="pageTitle">
-    <Form @add-note="addNote" />
-    <FilterBar :notes="notes" @filter="filterNote" />
-    <Notes :notes="filteredNotes" @delete="handelDelete" />
+  <Master :pageTitle="$store.state.appName">
+    {{ note }}
+    <Form />
+    <FilterBar />
+    <Notes />
   </Master>
 </template>
 
@@ -21,18 +22,6 @@ export default {
     FilterBar,
     Note,
     Form,
-  },
-  data() {
-    return {
-      pageTitle: "Notes",
-      note: {
-        title: "",
-        desc: "",
-        color: "#FCFAF9",
-      },
-      notes: [],
-      filter: "all",
-    };
   },
   mixins: [app],
 };

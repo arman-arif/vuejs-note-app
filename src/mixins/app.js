@@ -1,15 +1,17 @@
 import { v4 as uuid } from "uuid";
+import { mapState, mapGetters, mapMutations } from "vuex";
 export default {
   mounted() {
-    this.notes = JSON.parse(localStorage.getItem("notes")) || [
+    const notes = JSON.parse(localStorage.getItem("notes")) || [
       {
-        id: 1,
+        id: uuid(),
         title: "The note title",
         desc: "Erat autem lorem nonummy duo stet luptatum dolor labore",
         color: "#E9D5FF",
         time: "2022-01-01T00:00:00.000Z",
       },
     ];
+    this.setNotes(notes);
   },
   watch: {
     notes: {
@@ -20,27 +22,12 @@ export default {
     },
   },
   computed: {
-    filteredNotes() {
-      if (this.filter == "all") {
-        return this.notes;
-      }
-      return this.notes.filter((note) => note.color == this.filter);
-    },
+    ...mapState({
+      note: (state) => state.note,
+      notes: (state) => state.notes,
+      filter: (state) => state.filter,
+    }),
+    ...mapGetters(["filteredNotes"]),
   },
-  methods: {
-    addNote(note) {
-      const newNote = {
-        id: uuid(),
-        ...note,
-        time: new Date(),
-      };
-      this.notes.unshift(newNote);
-    },
-    handelDelete(id) {
-      this.notes = this.notes.filter((note) => note.id !== id);
-    },
-    filterNote(filter) {
-      this.filter = filter;
-    },
-  },
+  methods: mapMutations(["setNotes"]),
 };

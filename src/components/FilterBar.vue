@@ -1,14 +1,14 @@
 <template>
   <div class="filter-bar">
     <div class="filter-colors">
-      <span class="bg-white" @click="$emit('filter', 'all')">
+      <span class="bg-white" @click="setFilterMode('all')">
         All ({{ notes.length }})
       </span>
       <span
         v-for="noteCount in noteCountByColor"
         :key="noteCount.color"
         :style="{ backgroundColor: noteCount.color }"
-        @click="$emit('filter', noteCount.color)"
+        @click="setFilterMode(noteCount.color)"
       >
         {{ noteCount.count }}
       </span>
@@ -17,37 +17,14 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations, mapState } from "vuex";
 export default {
   name: "FilterBar",
-  props: {
-    notes: {
-      type: Array,
-    },
-  },
-  data() {
-    return {
-      colors: [
-        "#FCFAF9",
-        "#E9D5FF",
-        "#FECACA",
-        "#BBF7D0",
-        "#BFDBFE",
-        "#FEF08A",
-        "#FED7AA",
-        "#E2E8F0",
-      ],
-    };
-  },
   computed: {
-    noteCountByColor() {
-      return this.colors.map((color) => {
-        return {
-          color: color,
-          count: this.notes.filter((note) => note.color == color).length,
-        };
-      });
-    },
+    ...mapState(["colors", "notes"]),
+    ...mapGetters(["noteCountByColor"]),
   },
+  methods: mapMutations(["setFilterMode"]),
 };
 </script>
 
